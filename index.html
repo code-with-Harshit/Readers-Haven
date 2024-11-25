@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="bookstore, books, books shopping, online bookstore, writers, authors, content, reading, readers' haven">
+    <meta name="description" content="Readers' Haven: Your free online bookstore where you can binge your favourite novels or academic content. You can also order hardcopies or softcopies at best competitive prices.">
+    <meta name="authors" content="Harshit Sood, Harshita Garg and Harshita">
+    <title>Readers' Haven | Official Site</title>
+    <link rel="shortcut icon" href="public/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header1">
+            <a href="#home"><img src="public/logo.jpg" class="logo" alt="Bookstore Logo" style="height: 90px; width: 90px; " /></a>
+            <div class="search-container">
+                <input type="text" id="search-box" class="search-box" placeholder="Search for books...">
+                <button id="search-icon" class="search-icon" onclick="displayResult()">
+                    <i class="fa fa-search"></i>
+                </button>
+                <div id="result-container"></div>
+            </div>
+        
+        <div class="header2">
+            <nav class="navbar">
+                <a href="#home">home</a>
+                <a href="#features">featured</a>
+                <a href="#reviews">reviews</a>
+                <a href="#blog">blogs</a>
+                <div class="icons">
+                    <button class="add-to-cart" style="background-color: #333;"><i class="fa fa-eye" style="color: white;"><label class="txt">Cart</label></i></button>
+                    <button href="loginPAGE(new).html" style="background-color: #333;"><i class="fa fa-lock" style="color: white;"><label class="txt">Login</label></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="shopping-cart" id="shopping-cart">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-actions">
+            <button id="close-cart">CLOSE</button>
+            <button id="checkout">Check Out</button>
+        </div>
+        <div class="cart-icon" id="cart-icon">
+            🛒 <span class="cart-count">0</span>
+        </div>
+    </div>
+    
+    <div class="home" id="home">
+        <div class="slider-container">
+            <div class="app">
+
+                <div class="cardList">
+                    <button class="cardList__btn btn btn--left">
+                        <div class="icon">
+                            <svg>
+                                <use xlink:href="#arrow-left"></use>
+                            </svg>
+                        </div>
+                    </button>
+            
+                    <div class="cards__wrapper">
+                        <div class="card current--card">
+                            <div class="card__image">
+                                <img src="public/shakespeare-67698_1280 (1).jpg" alt="" />
+                            </div>
+                        </div>
+            
+                        <div class="card next--card">
+                            <div class="card__image">
+                                <img src="public/Dostoevsky.jpg" alt="" />
+                            </div>
+                        </div>
+            
+                        <div class="card previous--card">
+                            <div class="card__image">
+                                <img src="public/kafka.jpg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+            
+                    <button class="cardList__btn btn btn--right">
+                        <div class="icon">
+                            <svg>
+                                <use xlink:href="#arrow-right"></use>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+            
+                <div class="infoList">
+                    <div class="info__wrapper">
+                        <div class="info current--info">
+                            <h2 class="text name">Shakespeare</h2>
+                            <h4 class="text location">English</h4>
+                            <p class="text description">Timeless, poetic, influential</p>
+                        </div>
+            
+                        <div class="info next--info">
+                            <h2 class="text name">Dostoevsky</h2>
+                            <h4 class="text location">Russian</h4>
+                            <p class="text description">Psychological, profound, existential</p>
+                        </div>
+            
+                        <div class="info previous--info">
+                            <h2 class="text name">Kafka</h2>
+                            <h4 class="text location">German</h4>
+                            <p class="text description">Absurd, introspective, surreal</p>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="app__bg">
+                    <div class="app__bg__image current--image">
+                        <img src="public/shakespeare-67698_1280 (1).jpg" alt="" />
+                    </div>
+                    <div class="app__bg__image next--image">
+                        <img src="public/Dostoevsky.jpg" alt="" />
+                    </div>
+                    <div class="app__bg__image previous--image">
+                        <img src="public/kafka.jpg" alt="" />
+                    </div>
+                </div>
+
+                <div class="loading__wrapper">
+                    <div class="loader--text">Loading...</div>
+                    <div class="loader">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    
+        <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.3/gsap.min.js'></script>
+        <script  src="script.js"></script>
+        
+
+        <div class="icon-container">
+            <div class="icon-wrapper">
+                <div class="icon-item">
+                    <i class="fa fa-plane"></i>
+                    <div class="icon-content">
+                        <h3 class="web-content">free shipping</h3>
+                        <p>order over $100</p>
+                    </div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-lock"></i>
+                    <div class="icon-content">
+                        <h3 class="web-content">secure payment</h3>
+                        <p>100% secure payment</p>
+                    </div>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div class="icon-content">
+                        <h3 class="web-content">easy returns</h3>
+                        <p>10 days return</p>
+                    </div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-headphones"></i>
+                    <div class="icon-content">
+                        <h3 class="web-content">support</h3>
+                        <p>call us anytime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="features" id="features">
+            <h1 class="heading"><span>Featured Books</span></h1>
+            <div class="featured-slider">
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="slider-search-btn" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                    <div class="image">
+                        <img src="data:image/jpeg;base64,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" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name" id="book-name">The Great Gatsby</div>
+                        <div class="price">$15.99<span>$20.99</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="slider-search-btn" class="fa fa-search"></button>                        
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></a>
+                    </div>
+                    <div class="image">
+                        <img src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name" id="book-name">Soul</div>
+                        <div class="price">$15.99<span>$20.99</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                        <div class="image">
+                            <img src="https://marketplace.canva.com/EAFfSnGl7II/2/0/1003w/canva-elegant-dark-woods-fantasy-photo-book-cover-vAt8PH1CmqQ.jpg" alt="book">
+                        </div>
+                        <div class="featured-content">
+                            <div class="book-name" id="book-name">Walk Into the Shadow</div>
+                            <div class="price">$15.99<span>$20.99</span></div>
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                        <div class="image">
+                            <img src="https://m.media-amazon.com/images/I/51eGOzHC6oL._SY445_SX342_.jpg" alt="book">
+                        </div>
+                        <div class="featured-content">
+                            <div class="book-name" id="book-name">Crime and Punishment</div>
+                            <div class="price">$6.99<span>$20.99</span></div>
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                        <div class="image">
+                            <img src="https://m.media-amazon.com/images/I/61c88jy5+1L._SY466_.jpg" alt="book">
+                        </div>
+                        <div class="featured-content">
+                            <div class="book-name" id="book-name">The Bell Jar</div>
+                            <div class="price">$15.99<span>$20.99</span></div>
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                        <div class="image">
+                            <img src="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg" alt="book">
+                        </div>
+                        <div class="featured-content">
+                            <div class="book-name" id="book-name">Harry Potter and the Goblet of Fire</div>
+                            <div class="price">$15.99<span>$20.99</span></div>
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                    </div>
+                    <div class="image">
+                        <img src="https://m.media-amazon.com/images/I/410F1YpxXeL._SY445_SX342_.jpg" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name" id="book-name">The Metamorphosis</div>
+                        <div class="price">$6.99<span>$20.99</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icons">
+                        <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
+                        <button href="#" class="fa fa-eye"></button>
+                        <button href="#" class="fa fa-heart"></button>
+                        </div>
+                        <div class="image">
+                            <img src="https://m.media-amazon.com/images/I/419aJfhczCL._SY445_SX342_.jpg" alt="book">
+                        </div>
+                        <div class="featured-content">
+                            <div class="book-name" id="book-name">Atomic Habits</div>
+                            <div class="price">$15.99<span>$20.99</span></div>
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter">
+        <form id="subscription-form">
+            <h3 class="web-content"> Subscribe for latest updates..</h3>
+            <input type="email" placeholder="enter your email" id="email-box" required>
+            <button type="submit" class="email-btn">Subscribe</button>
+        </form>
+        <p id="response-message"></p>
+
+    </div>
+    
+    <script>
+        document.getElementById('subscription-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email-box').value;
+            const responseMessage = document.getElementById('response-message');
+
+            try {
+                const response = await fetch('http://localhost:5000/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseMessage.textContent = data.message;
+                    responseMessage.style.color = 'green';
+                } else {
+                    responseMessage.textContent = data.error;
+                    responseMessage.style.color = 'red';
+                }
+            } catch (error) {
+                responseMessage.textContent = 'An error occurred. Please try again.';
+                responseMessage.style.color = 'red';
+            }
+        });
+    </script>
+
+    <div class="deal" id="deal">
+        <center>
+            <div class="deal-wrapper">
+                <div class="box">
+                    <div class="image">
+                        <img src="https://m.media-amazon.com/images/I/410F1YpxXeL._SY445_SX342_.jpg" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name">The Metamorphosis</div>
+                        <div class="price">$6.99<span>$20.99</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+    
+                <div class="deal-content">
+                    <h3 class="web-content"> Deal of the Day(DOTD)</h3>
+                    <h3 class="web-content">Upto 70% Off</h3>
+                    <a href="#" class="btn">shop now</a>
+                </div>
+    
+                <div class="box">
+                    <div class="image">
+                        <img src="https://m.media-amazon.com/images/I/51eGOzHC6oL._SY445_SX342_.jpg" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name">Crime and Punishment</div>
+                        <div class="price">$6.99<span>$20.99</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+    
+            </div>
+        </center>
+    </div>
+
+    <div class="blog" id="blog">
+        <div class="blog-container">
+            <div class="blog-content">
+                <h1>THE POWER WITHIN ME</h1>
+                <img class="image" src="https://m.media-amazon.com/images/I/61AnosS1Z4L.SY466.jpg">
+                <p>Too often we feel powerless to address the tug-of-war going on inside us. Many people have heard the whispers from an inner voice saying, “you’re not living up to your full potential.” Yet when you try to change, you get pulled back into the vortex of your status quo leaving you feeling isolated, stuck, and like no one understands the real you.
+                    Repeatedly hearing this story from her coaching clients led conscious leadership expert and mindset coach, Dr. Annice Fisher to share her ground-breaking 4-step consciousness-raising process for reclaiming your power. For over 15 years she has led people through the change process, and discovered that the baseline for creating and sustaining change is a belief that you have power and choice in every situation. It is up to YOU to decide if you want to use them.
+                    Your guided path through this book will teach you how to get unstuck. Each power phase: asking, assessing, and accepting uses the 4-step process to bring you back home to live as the highest version of yourself. </p>
+                <h2>SOUL</h2>
+                <img class="image" src="https://estorytellers.com/images/ebook_hero.png">
+                <p>The life that Kim and Krickitt Carpenter knew changed completely on November 24, 1993, two months after their wedding, when the rear of their car was struck by a pickup truck traveling at high speed. A serious head injury left Krickitt in a coma for several weeks. When she finally woke up, part of her memory was compromised, and she couldn't remember her husband. She had no idea who he was. Essentially, the "Krickitt" that Kim had married died in the accident, and at that moment he needed to win back the woman he loved.</p>
+                <h3>THE ART STONE</h3>
+                <img class="image" src="https://www.selfpublishingreview.com/wp-content/uploads/2020/09/2811563201-400x618.jpg.webp">
+                <p>The transformation of these adolescent characters over the course of the novel is remarkable; managing a coming-of-age story for multiple main players is ambitious, but Ellis pulls it off well. As their mystical world continues to crumble, a long-lost stone  one of the first twelve creation stones from the Goddess summons powers both good and evil who are seeking to fill the void of fallen empires.</p>
+                <h4>HARRY POTTER AND THE GOBLET OF FIRE</h4>
+                <img class="image" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgioxAc6jyh6ziiNuUAW6sm76dOUAwzow8eOmblVdwSwsN-z6VtKqgSOWiYhkk_MDsmz3ugA">
+                <p>It's Harry Potter's fourth term at Hogwarts School of Witchcraft andWizardry! Harry, Ron and Hermione look forward to the internationalQuidditch finals. Harry dreams of spending time with the alluring ChoChang. He wants to be a normal 14-year-old wizard . . . But Harry is notnormal--even by wizarding standards. This term, for the first time inhundreds of years, a competition will be held between three schools ofwizardry, and contestants will be magically chosen for the verydangerous event. Now, as Harry's lightning scar burns, indicating theevil presence of Lord Voldemort, the Goblet of Fire makes its finalselection for the competition--Harry Potter</p>
+        
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    
+    <section class="review" id="reviews">
+        <h1 class="heading"> Client's Reviews</h1>
+        <div class="reviews-slider">
+            <div class="box">
+                <img src="https://plus.unsplash.com/premium_photo-1682144187125-b55e638cf286?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D" alt="">
+                <h3>john deo</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed error esse voluptatem accusantium molestias mollitia fuga rem quisquam. Quo tempora culpa aut modi praesentium asperiores voluptates omnis eaque iste saepe.</p>
+                <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half"></i>                
+                </div>
+            </div>
+
+                <div class="box">
+                    <img src="https://media.istockphoto.com/id/1394347322/photo/confident-black-businesswoman-working-in-an-office-alone.jpg?s=612x612&w=0&k=20&c=zB6tQt-Zfps0KLU0MP6u-BEl8VvUAgXG-ZHX8zSXAUA=" alt="">
+                    <h3>lisa</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed error esse voluptatem accusantium molestias mollitia fuga rem quisquam. Quo tempora culpa aut modi praesentium asperiores voluptates omnis eaque iste saepe.</p>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half"></i>
+                                
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="https://t4.ftcdn.net/jpg/06/10/19/43/360_F_610194339_3CtGOkv4wIiAyybcib4IrFX0nnc83Bv6.jpg" alt="">
+                    <h3>leo </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed error esse voluptatem accusantium molestias mollitia fuga rem quisquam. Quo tempora culpa aut modi praesentium asperiores voluptates omnis eaque iste saepe.</p>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                                
+                    </div>
+                </div>
+
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>our location</h3>
+                <a href="#"><i class="fa fa-map"></i>india</a>
+                <a href="#"><i class="fa fa-map"></i>USA</a>
+                <a href="#"><i class="fa fa-map"></i>Russia</a>
+                <a href="#"><i class="fa fa-map"></i>France</a>
+                <a href="#"><i class="fa fa-map"></i>japan</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"><i class="fa fa-arrow-right"></i>home</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>featured</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>arrivals</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>reviews</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>blogs</a>
+            </div>
+
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#"><i class="fa fa-arrow-right"></i>account info</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>ordered items</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>privacy policy</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>payment method</a>
+                <a href="#"><i class="fa fa-arrow-right"></i>services</a>
+            </div>
+            <div class="box">
+                <h3> contact info</h3>
+                <a href="#"><i class="fa fa-phone"></i> +91 9900XXXX21</a>
+                <a href="#"><i class="fa fa-phone"></i> +91 8800XXXX11</a>
+                <a href="#"><i class="fa fa-envelope"></i>xyz@gmail.com</a>
+            </div>
+        </div>
+    </section>    
+
+    <div class="credit">
+        &copy;<span>Readers' Haven 2024</span> | All rights reserved!&copy;
+    </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

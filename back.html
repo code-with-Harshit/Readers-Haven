@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Subscription</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="newsletter">
+        <form id="subscription-form">
+            <h3 class="web-content">Subscribe for latest updates...</h3>
+            <input type="email" id="email" placeholder="Enter your email" class="email-box" required>
+            <button type="submit" class="email-btn">Subscribe</button>
+        </form>
+        <p id="response-message"></p>
+    </div>
+
+    <script>
+        document.getElementById('subscription-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const responseMessage = document.getElementById('response-message');
+
+            try {
+                const response = await fetch('http://localhost:5000/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseMessage.textContent = data.message;
+                    responseMessage.style.color = 'green';
+                } else {
+                    responseMessage.textContent = data.error;
+                    responseMessage.style.color = 'red';
+                }
+            } catch (error) {
+                responseMessage.textContent = 'An error occurred. Please try again.';
+                responseMessage.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
