@@ -68,318 +68,109 @@ document.addEventListener('click', (event) => {
     }
 }
 
+const cartIconBtn = document.querySelector(".cartIcon-btn");
+const cartItemsContainer = document.querySelector('#cart-items tbody');
+const cartCountDisplay = document.querySelector('.cart-count');
+const totalAmountDisplay = document.getElementById('total-amount');
+const closeCartButton = document.getElementById('close-cart');
+const checkoutButton = document.getElementById('checkout');
+const shoppingCart = document.querySelector('.shopping-cart');
+const cartIcon = document.getElementById('cart-icon');
 
-console.clear();
+// Initialize cart count and items
+let cartCount = 0;
+let totalAmount = 0;
 
-const { gsap, imagesLoaded } = window;
+// Add functionality to 'Add to Cart' button
+cartIconBtn.addEventListener('click', () => {
+    openCart();
+});
 
-const buttons = {
-	prev: document.querySelector(".btn--left"),
-	next: document.querySelector(".btn--right"),
-};
-const cardsContainerEl = document.querySelector(".cards__wrapper");
-const appBgContainerEl = document.querySelector(".app__bg");
+cartIcon.addEventListener('click', () => {
+    openCart();
+});
 
-const cardInfosContainerEl = document.querySelector(".info__wrapper");
-
-buttons.next.addEventListener("click", () => swapCards("right"));
-
-buttons.prev.addEventListener("click", () => swapCards("left"));
-
-function swapCards(direction) {
-	const currentCardEl = cardsContainerEl.querySelector(".current--card");
-	const previousCardEl = cardsContainerEl.querySelector(".previous--card");
-	const nextCardEl = cardsContainerEl.querySelector(".next--card");
-
-	const currentBgImageEl = appBgContainerEl.querySelector(".current--image");
-	const previousBgImageEl = appBgContainerEl.querySelector(".previous--image");
-	const nextBgImageEl = appBgContainerEl.querySelector(".next--image");
-
-	changeInfo(direction);
-	swapCardsClass();
-
-	removeCardEvents(currentCardEl);
-
-	function swapCardsClass() {
-		currentCardEl.classList.remove("current--card");
-		previousCardEl.classList.remove("previous--card");
-		nextCardEl.classList.remove("next--card");
-
-		currentBgImageEl.classList.remove("current--image");
-		previousBgImageEl.classList.remove("previous--image");
-		nextBgImageEl.classList.remove("next--image");
-
-		currentCardEl.style.zIndex = "50";
-		currentBgImageEl.style.zIndex = "-2";
-
-		if (direction === "right") {
-			previousCardEl.style.zIndex = "20";
-			nextCardEl.style.zIndex = "30";
-
-			nextBgImageEl.style.zIndex = "-1";
-
-			currentCardEl.classList.add("previous--card");
-			previousCardEl.classList.add("next--card");
-			nextCardEl.classList.add("current--card");
-
-			currentBgImageEl.classList.add("previous--image");
-			previousBgImageEl.classList.add("next--image");
-			nextBgImageEl.classList.add("current--image");
-		} else if (direction === "left") {
-			previousCardEl.style.zIndex = "30";
-			nextCardEl.style.zIndex = "20";
-
-			previousBgImageEl.style.zIndex = "-1";
-
-			currentCardEl.classList.add("next--card");
-			previousCardEl.classList.add("current--card");
-			nextCardEl.classList.add("previous--card");
-
-			currentBgImageEl.classList.add("next--image");
-			previousBgImageEl.classList.add("current--image");
-			nextBgImageEl.classList.add("previous--image");
-		}
-	}
+// Function to update cart count in the icon
+function updateCartCount() {
+    cartCountDisplay.textContent = cartCount;
 }
 
-function changeInfo(direction) {
-	let currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
-	let previousInfoEl = cardInfosContainerEl.querySelector(".previous--info");
-	let nextInfoEl = cardInfosContainerEl.querySelector(".next--info");
-
-	gsap.timeline()
-		.to([buttons.prev, buttons.next], {
-		duration: 0.2,
-		opacity: 0.5,
-		pointerEvents: "none",
-	})
-		.to(
-		currentInfoEl.querySelectorAll(".text"),
-		{
-			duration: 0.4,
-			stagger: 0.1,
-			translateY: "-120px",
-			opacity: 0,
-		},
-		"-="
-	)
-		.call(() => {
-		swapInfosClass(direction);
-	})
-		.call(() => initCardEvents())
-		.fromTo(
-		direction === "right"
-		? nextInfoEl.querySelectorAll(".text")
-		: previousInfoEl.querySelectorAll(".text"),
-		{
-			opacity: 0,
-			translateY: "40px",
-		},
-		{
-			duration: 0.4,
-			stagger: 0.1,
-			translateY: "0px",
-			opacity: 1,
-		}
-	)
-		.to([buttons.prev, buttons.next], {
-		duration: 0.2,
-		opacity: 1,
-		pointerEvents: "all",
-	});
-
-	function swapInfosClass() {
-		currentInfoEl.classList.remove("current--info");
-		previousInfoEl.classList.remove("previous--info");
-		nextInfoEl.classList.remove("next--info");
-
-		if (direction === "right") {
-			currentInfoEl.classList.add("previous--info");
-			nextInfoEl.classList.add("current--info");
-			previousInfoEl.classList.add("next--info");
-		} else if (direction === "left") {
-			currentInfoEl.classList.add("next--info");
-			nextInfoEl.classList.add("previous--info");
-			previousInfoEl.classList.add("current--info");
-		}
-	}
+// Function to open the cart (slide in from the right)
+function openCart() {
+    shoppingCart.classList.add('active');
 }
 
-function updateCard(e) {
-	const card = e.currentTarget;
-	const box = card.getBoundingClientRect();
-	const centerPosition = {
-		x: box.left + box.width / 2,
-		y: box.top + box.height / 2,
-	};
-	let angle = Math.atan2(e.pageX - centerPosition.x, 0) * (35 / Math.PI);
-	gsap.set(card, {
-		"--current-card-rotation-offset": `${angle}deg`,
-	});
-	const currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
-	gsap.set(currentInfoEl, {
-		rotateY: `${angle}deg`,
-	});
+// Add functionality to 'Close Cart' button
+closeCartButton.addEventListener('click', () => {
+    shoppingCart.classList.remove('active');
+});
+
+// Add functionality to 'Checkout' button
+checkoutButton.addEventListener('click', () => {
+    if (cartCount > 0) {
+        alert(`Checking out ${cartCount} items for a total of $${totalAmount.toFixed(2)}.`);
+        // Clear the cart after checkout
+        cartItemsContainer.innerHTML = '';
+        cartCount = 0;
+        totalAmount = 0;
+        updateCartCount();
+        totalAmountDisplay.textContent = '0.00';
+        shoppingCart.classList.remove('active');
+    } else {
+        alert(`Your cart is empty!`);
+    }
+});
+
+// Function to add an item to the cart
+function addCartItem(itemName, itemPrice) {
+    const existingRow = Array.from(cartItemsContainer.rows).find(row => row.cells[0].textContent === itemName);
+    
+    if (existingRow) {
+        // If the item already exists, increase the quantity
+        const quantityCell = existingRow.cells[2];
+        const totalCell = existingRow.cells[3];
+        
+        let quantity = parseInt(quantityCell.textContent) + 1;
+        quantityCell.textContent = quantity;
+        
+        // Update the total price for this item
+        const total = (itemPrice * quantity).toFixed(2);
+        totalCell.textContent = total;
+        
+    } else {
+        // If the item doesn't exist, create a new row
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${itemName}</td>
+            <td>$${itemPrice.toFixed(2)}</td>
+            <td>1</td>
+            <td>$${itemPrice.toFixed(2)}</td>
+        `;
+        cartItemsContainer.appendChild(newRow);
+    }
+
+    // Update the total amount payable
+    totalAmount += itemPrice;
+    totalAmountDisplay.textContent = totalAmount.toFixed(2);
 }
 
-function resetCardTransforms(e) {
-	const card = e.currentTarget;
-	const currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
-	gsap.set(card, {
-		"--current-card-rotation-offset": 0,
-	});
-	gsap.set(currentInfoEl, {
-		rotateY: 0,
-	});
-}
+// Wait for the DOM to load before adding event listeners to the 'Add to Cart' buttons
+document.addEventListener("DOMContentLoaded", () => {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            // Use event.target to get the button that was clicked
+            const featuredContent = event.target.closest('.featured-content');
+            const itemName = featuredContent.querySelector('.book-name').textContent;
+            const itemPrice = parseFloat(featuredContent.querySelector('.price').textContent.replace('$', '')); // Get the price without the dollar sign
 
-function initCardEvents() {
-	const currentCardEl = cardsContainerEl.querySelector(".current--card");
-	currentCardEl.addEventListener("pointermove", updateCard);
-	currentCardEl.addEventListener("pointerout", (e) => {
-		resetCardTransforms(e);
-	});
-}
+            // Add the item to the cart
+            addCartItem(itemName, itemPrice);
 
-initCardEvents();
-
-function removeCardEvents(card) {
-	card.removeEventListener("pointermove", updateCard);
-}
-
-function init() {
-
-	let tl = gsap.timeline();
-
-	tl.to(cardsContainerEl.children, {
-		delay: 0.15,
-		duration: 0.5,
-		stagger: {
-			ease: "power4.inOut",
-			from: "right",
-			amount: 0.1,
-		},
-		"--card-translateY-offset": "0%",
-	})
-		.to(cardInfosContainerEl.querySelector(".current--info").querySelectorAll(".text"), {
-		delay: 0.5,
-		duration: 0.4,
-		stagger: 0.1,
-		opacity: 1,
-		translateY: 0,
-	})
-		.to(
-		[buttons.prev, buttons.next],
-		{
-			duration: 0.4,
-			opacity: 1,
-			pointerEvents: "all",
-		},
-		"-=0.4"
-	);
-}
-
-const waitForImages = () => {
-	const images = [...document.querySelectorAll("img")];
-	const totalImages = images.length;
-	let loadedImages = 0;
-	const loaderEl = document.querySelector(".loader span");
-
-	gsap.set(cardsContainerEl.children, {
-		"--card-translateY-offset": "100vh",
-	});
-	gsap.set(cardInfosContainerEl.querySelector(".current--info").querySelectorAll(".text"), {
-		translateY: "40px",
-		opacity: 0,
-	});
-	gsap.set([buttons.prev, buttons.next], {
-		pointerEvents: "none",
-		opacity: "0",
-	});
-
-	images.forEach((image) => {
-		imagesLoaded(image, (instance) => {
-			if (instance.isComplete) {
-				loadedImages++;
-				let loadProgress = loadedImages / totalImages;
-
-				gsap.to(loaderEl, {
-					duration: 1,
-					scaleX: loadProgress,
-					backgroundColor: `hsl(${loadProgress * 120}, 100%, 50%`,
-				});
-
-				if (totalImages == loadedImages) {
-					gsap.timeline()
-						.to(".loading__wrapper", {
-						duration: 0.8,
-						opacity: 0,
-						pointerEvents: "none",
-					})
-						.call(() => init());
-				}
-			}
-		});
-	});
-};
-
-waitForImages();
-
-const addToCartButton = document.querySelector('.add-to-cart');
-        const cartItemsContainer = document.querySelector('.cart-items');
-        const cartCountDisplay = document.querySelector('.cart-count');
-        const closeCartButton = document.getElementById('close-cart');
-        const checkoutButton = document.getElementById('checkout');
-        const shoppingCart = document.getElementById('shopping-cart');
-        const cartIcon = document.getElementById('cart-icon');
-
-        // Initialize cart count and items
-        let cartCount = 0;
-
-        // Add functionality to 'Add to Cart' button
-        addToCartButton.addEventListener('click', () => {
-            cartCount++;
-            const itemName = (`Item ${cartCount}`);
+            // Update the cart count and open the cart
+            cartCount++; // Increment cart count
             updateCartCount();
-            addCartItem(itemName);
             openCart();
         });
-
-        // Function to update cart count in the icon
-        function updateCartCount() {
-            cartCountDisplay.textContent = cartCount;
-        }
-
-        // Function to add items to the cart
-        function addCartItem(itemName) {
-            const itemElement = document.createElement('div');
-            itemElement.textContent = itemName;
-            itemElement.style.marginBottom = '10px';
-            cartItemsContainer.appendChild(itemElement);
-        }
-
-        // Function to open the cart (slide in from the right)
-        function openCart() {
-            shoppingCart.classList.add('active');
-        }
-
-        // Add functionality to 'Close Cart' button
-        closeCartButton.addEventListener('click', () => {
-            shoppingCart.classList.remove('active');
-        });
-
-        // Add functionality to 'Checkout' button
-        checkoutButton.addEventListener('click', () => {
-            if (cartCount > 0) {
-                alert(`Checking out ${cartCount} items.`);
-                // Clear the cart after checkout
-                cartItemsContainer.innerHTML = '';
-                cartCount = 0;
-                updateCartCount();
-                shoppingCart.classList.remove('active');
-            } else {
-                alert(`Your cart is empty!`);
-            }
-        });
-
-		
+    });
+});
