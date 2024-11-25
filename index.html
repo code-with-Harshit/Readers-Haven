@@ -7,7 +7,7 @@
     <meta name="description" content="Readers' Haven: Your free online bookstore where you can binge your favourite novels or academic content. You can also order hardcopies or softcopies at best competitive prices.">
     <meta name="authors" content="Harshit Sood, Harshita Garg and Harshita">
     <title>Readers' Haven | Official Site</title>
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 
@@ -16,7 +16,7 @@
 <body>
     <header class="header">
         <div class="header1">
-            <a href="#home"><img src="logo.jpg" class="logo" alt="Bookstore Logo" style="height: 90px; width: 90px; " /></a>
+            <a href="#home"><img src="public/logo.jpg" class="logo" alt="Bookstore Logo" style="height: 90px; width: 90px; " /></a>
             <div class="search-container">
                 <input type="text" id="search-box" class="search-box" placeholder="Search for books...">
                 <button id="search-icon" class="search-icon" onclick="displayResult()">
@@ -25,118 +25,51 @@
                 <div id="result-container"></div>
             </div>
         
-        <div class="header2">
-            <nav class="navbar">
-                <a href="#home">home</a>
-                <a href="#features">featured</a>
-                <a href="#reviews">reviews</a>
-                <a href="#blog">blogs</a>
-                <div class="icons">
-                    <button class="add-to-cart" style="background-color: #333;"><i class="fa fa-eye" style="color: white;"><label class="txt">Cart</label></i></button>
-                    <a href="loginPAGE(new).html" style="background-color: #333;"><i class="fa fa-lock" style="color: white;"><label class="txt">Login</label></i></a>
-                </div>
-            </nav>
-        </div>
+            <div class="header2">
+                <nav class="navbar">
+                    <a href="#home">home</a>
+                    <a href="#features">featured</a>
+                    <a href="#reviews">reviews</a>
+                    <a href="#blog">blogs</a>
+                    <div class="icons">
+                        <button class="cartIcon-btn" style="background-color: #333;"><i class="fa fa-eye" style="color: white;"><label class="txt">Cart</label></i></button>
+                        <a href="loginPAGE(new).html" style="background-color: #333;"><i class="fa fa-lock" style="color: white;"><label class="txt">Login</label></i></a>
+                    </div>
+                </nav>
+            </div>
+        
     </header>
 
     <div class="shopping-cart" id="shopping-cart">
         <div class="cart-header">
             <h2>Shopping Cart</h2>
         </div>
-        <div class="cart-items"></div>
+        <table class="cart-items" id="cart-items">
+            <thead>
+                <tr>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <div class="total-amount">
+            <strong>Total Amount Payable: $<span id="total-amount">0.00</span></strong>
+        </div>
         <div class="cart-actions">
             <button id="close-cart">CLOSE</button>
             <button id="checkout">Check Out</button>
         </div>
         <div class="cart-icon" id="cart-icon">
             🛒 <span class="cart-count">0</span>
-        </div>
+        </div>  
     </div>
-    
+
     <div class="home" id="home">
         <div class="slider-container">
-            <div class="app">
-
-                <div class="cardList">
-                    <button class="cardList__btn btn btn--left">
-                        <div class="icon">
-                            <svg>
-                                <use xlink:href="#arrow-left"></use>
-                            </svg>
-                        </div>
-                    </button>
-            
-                    <div class="cards__wrapper">
-                        <div class="card current--card">
-                            <div class="card__image">
-                                <img src="shakespeare-67698_1280 (1).jpg" alt="" />
-                            </div>
-                        </div>
-            
-                        <div class="card next--card">
-                            <div class="card__image">
-                                <img src="Dostoevsky.jpg" alt="" />
-                            </div>
-                        </div>
-            
-                        <div class="card previous--card">
-                            <div class="card__image">
-                                <img src="kafka.jpg" alt="" />
-                            </div>
-                        </div>
-                    </div>
-            
-                    <button class="cardList__btn btn btn--right">
-                        <div class="icon">
-                            <svg>
-                                <use xlink:href="#arrow-right"></use>
-                            </svg>
-                        </div>
-                    </button>
-                </div>
-            
-                <div class="infoList">
-                    <div class="info__wrapper">
-                        <div class="info current--info">
-                            <h2 class="text name">Shakespeare</h2>
-                            <h4 class="text location">English</h4>
-                            <p class="text description">Timeless, poetic, influential</p>
-                        </div>
-            
-                        <div class="info next--info">
-                            <h2 class="text name">Dostoevsky</h2>
-                            <h4 class="text location">Russian</h4>
-                            <p class="text description">Psychological, profound, existential</p>
-                        </div>
-            
-                        <div class="info previous--info">
-                            <h2 class="text name">Kafka</h2>
-                            <h4 class="text location">German</h4>
-                            <p class="text description">Absurd, introspective, surreal</p>
-                        </div>
-                    </div>
-                </div>
-            
-            
-                <div class="app__bg">
-                    <div class="app__bg__image current--image">
-                        <img src="shakespeare-67698_1280 (1).jpg" alt="" />
-                    </div>
-                    <div class="app__bg__image next--image">
-                        <img src="Dostoevsky.jpg" alt="" />
-                    </div>
-                    <div class="app__bg__image previous--image">
-                        <img src="kafka.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div class="loading__wrapper">
-                    <div class="loader--text">Loading...</div>
-                    <div class="loader">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
         </div>    
     
         <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js'></script>
@@ -192,7 +125,7 @@
                     <div class="featured-content">
                         <div class="book-name" id="book-name">The Great Gatsby</div>
                         <div class="price">$15.99<span>$20.99</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
                 <div class="box">
@@ -207,7 +140,7 @@
                     <div class="featured-content">
                         <div class="book-name" id="book-name">Soul</div>
                         <div class="price">$15.99<span>$20.99</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
                 <div class="box">
@@ -222,7 +155,7 @@
                         <div class="featured-content">
                             <div class="book-name" id="book-name">Walk Into the Shadow</div>
                             <div class="price">$15.99<span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
+                            <button class="add-to-cart">Add to Cart</button>
                         </div>
                 </div>
                 <div class="box">
@@ -237,7 +170,7 @@
                         <div class="featured-content">
                             <div class="book-name" id="book-name">Crime and Punishment</div>
                             <div class="price">$6.99<span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
+                            <button class="add-to-cart">Add to Cart</button>
                         </div>
                 </div>
                 <div class="box">
@@ -252,7 +185,7 @@
                         <div class="featured-content">
                             <div class="book-name" id="book-name">The Bell Jar</div>
                             <div class="price">$15.99<span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
+                            <button class="add-to-cart">Add to Cart</button>
                         </div>
                 </div>
                 <div class="box">
@@ -260,15 +193,15 @@
                         <button onclick="getBookName(this)" id="search-icon" class="fa fa-search"></button>
                         <button href="#" class="fa fa-eye"></button>
                         <button href="#" class="fa fa-heart"></button>
-                        </div>
-                        <div class="image">
-                            <img src="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg" alt="book">
-                        </div>
-                        <div class="featured-content">
-                            <div class="book-name" id="book-name">Harry Potter and the Goblet of Fire</div>
-                            <div class="price">$15.99<span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
-                        </div>
+                    </div>
+                    <div class="image">
+                        <img src="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg" alt="book">
+                    </div>
+                    <div class="featured-content">
+                        <div class="book-name" id="book-name">Harry Potter and the Goblet of Fire</div>
+                        <div class="price">$15.99<span>$20.99</span></div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>        
                 </div>
                 <div class="box">
                     <div class="icons">
@@ -282,7 +215,7 @@
                     <div class="featured-content">
                         <div class="book-name" id="book-name">The Metamorphosis</div>
                         <div class="price">$6.99<span>$20.99</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
                 <div class="box">
@@ -297,7 +230,7 @@
                         <div class="featured-content">
                             <div class="book-name" id="book-name">Atomic Habits</div>
                             <div class="price">$15.99<span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
+                            <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -357,14 +290,13 @@
                     <div class="featured-content">
                         <div class="book-name">The Metamorphosis</div>
                         <div class="price">$6.99<span>$20.99</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
     
                 <div class="deal-content">
                     <h3 class="web-content"> Deal of the Day(DOTD)</h3>
                     <h3 class="web-content">Upto 70% Off</h3>
-                    <a href="#" class="btn">shop now</a>
                 </div>
     
                 <div class="box">
@@ -374,7 +306,7 @@
                     <div class="featured-content">
                         <div class="book-name">Crime and Punishment</div>
                         <div class="price">$6.99<span>$20.99</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
     
