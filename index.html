@@ -7,7 +7,7 @@
     <meta name="description" content="Readers' Haven: Your free online bookstore where you can binge your favourite novels or academic content. You can also order hardcopies or softcopies at best competitive prices.">
     <meta name="authors" content="Harshit Sood, Harshita Garg and Harshita">
     <title>Readers' Haven | Official Site</title>
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 
@@ -16,7 +16,7 @@
 <body>
     <header class="header">
         <div class="header1">
-            <a href="#home"><img src="logo.jpg" class="logo" alt="Bookstore Logo" style="height: 90px; width: 90px; " /></a>
+            <a href="#home"><img src="public/logo.jpg" class="logo" alt="Bookstore Logo" style="height: 90px; width: 90px; " /></a>
             <div class="search-container">
                 <input type="text" id="search-box" class="search-box" placeholder="Search for books...">
                 <button id="search-icon" class="search-icon" onclick="displayResult()">
@@ -69,9 +69,19 @@
     </div>
 
     <div class="home" id="home">
-        <div class="slider-container">
-        </div>    
-    
+            <div class="content">
+                <div class="content-wrapper">
+                    <div class="slideshow-container">
+                        <div class="slideshow-wrapper">
+                            <div class="slideshow-images">
+                                <img src="public/MetamorphosisPic.png" class="slideshow-item" id="book1"/>
+                                <img src="public/DostoyevskyPic.png" class="slideshow-item" id="book2"/>
+                                <img src="public/AtomicHabits.png" class="slideshow-item" id="book3"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
         <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.3/gsap.min.js'></script>
         <script  src="script.js"></script>
@@ -245,7 +255,6 @@
             <button type="submit" class="email-btn">Subscribe</button>
         </form>
         <p id="response-message"></p>
-
     </div>
     
     <script>
