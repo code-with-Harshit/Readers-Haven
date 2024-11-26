@@ -77,28 +77,28 @@ body
 
 .search-box {
     padding: 8px;
-    padding-right: 40px; /* Add space for the icon inside the input */
+    padding-right: 40px; 
     border: none;
     border-radius: 4px;
-    width: 100%; /* Fill the container width */
+    width: 100%; 
     height: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
-    box-sizing: border-box; /* Prevent padding from expanding width */
+    box-sizing: border-box; 
 }
 
 .search-icon {
     position: absolute;
-    right: 10px; /* Align icon to the right edge of the container */
+    right: 10px; 
     top: 50%;
-    transform: translateY(-50%); /* Center icon vertically */
+    transform: translateY(-50%); 
     padding: 0;
     border: none;
     background: transparent;
     color: #ff5a5f;
     font-size: large;
-    cursor: pointer; /* Pointer cursor for button feel */
-    height: 24px; /* Adjust height to fit within input */
+    cursor: pointer; 
+    height: 24px; 
 }
 
 
@@ -207,7 +207,7 @@ body
     font-size: 24px;
     color: white; 
     background-color: #333;
-    width: 600px;
+    width: 800px;
     height: 280px;
     display: flex;
     flex-direction: column;
@@ -382,7 +382,6 @@ p a:hover
   transform: scale(1.1);
 }
 
-/* Image styling inside the box */
 .featured-slider img {
   height: 380px;
   width: 250px;
@@ -390,14 +389,14 @@ p a:hover
   margin-bottom: 10px;
 }
 
-/* Styling for the item name */
+
 .book-name {
   margin-top: 5px;
   font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Pricing section */
+
 .featured-slider .price {
   font-size: 16px;
   color: #ff5a5f;
@@ -411,7 +410,6 @@ p a:hover
   margin-left: 10px;
 }
 
-/* Add to Cart button */
 .add-to-cart {
   background-color: #ff5a5f;
   color: #ffffff;
@@ -435,11 +433,10 @@ p a:hover
 
 
 
-/* Shopping cart container */
 .shopping-cart {
   position: fixed;
   top: 0;
-  right: -400px; /* Hidden initially */
+  right: -400px; 
   width: 400px;
   height: 100%;
   background-color: #ffffff;
@@ -453,10 +450,9 @@ p a:hover
 }
 
 .shopping-cart.active {
-  right: 0; /* Slide in */
+  right: 0; 
 }
 
-/* Cart header */
 .cart-header {
   font-size: 24px;
   font-weight: bold;
@@ -464,7 +460,6 @@ p a:hover
   text-align: center;
 }
 
-/* Cart items container */
 .cart-items {
   flex-grow: 1;
   margin-bottom: 20px;
@@ -472,7 +467,7 @@ p a:hover
   overflow-y: auto;
 }
 
-/* Cart action buttons */
+
 .cart-actions {
   display: flex;
   justify-content: space-evenly;
@@ -493,7 +488,7 @@ p a:hover
 }
 
 .total-amount {
-  margin: 10px; /* Space above the total amount box */
+  margin: 10px; 
   padding: 10px; /* Padding inside the box */
   background-color: #f8f8f8; /* Light background color */
   border: 1px solid #ddd; /* Light border around the box */
